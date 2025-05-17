@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wannes Machiels - Contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml">
+</head>
+<body>
+    <div class="header">
+        <h1>Wannes Machiels</h1>
+    </div>
+    
+    <div class="action-buttons">
+        <a href="tel:+32486476812" class="action-button call"><i class="fas fa-phone"></i> CALL</a>
+        <a href="mailto:wannesmachiels@gmail.com" class="action-button email"><i class="fas fa-envelope"></i> EMAIL</a>
+    </div>
+    
+    <div class="contact-info">
+        <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-mobile-alt"></i></div>
+            <div class="contact-detail">
+                <a href="tel:+32486476812" class="contact-value">+32486476812</a>
+                <div class="contact-label">Mobile</div>
+            </div>
+        </div>
+        
+        <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <div class="contact-detail">
+                <a href="mailto:wannesmachiels@gmail.com" class="contact-value">wannesmachiels@gmail.com</a>
+                <div class="contact-label">Email</div>
+            </div>
+        </div>
+        
+        <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-globe"></i></div>
+            <div class="contact-detail">
+                <a href="https://mac-hills.github.io/portfolio/" target="_blank" class="contact-value">https://mac-hills.github.io/portfolio/</a>
+                <div class="contact-label">Website</div>
+            </div>
+        </div>
+    </div>
+    
+    <a href="#" id="download-vcard" class="download-vcard"><i class="fas fa-user-plus"></i> DOWNLOAD VCARD</a>
+    
+    <script>
+        document.getElementById('download-vcard').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Create vCard content
+            const vCardData = 
+            `BEGIN:VCARD
+VERSION:3.0
+FN:Wannes Machiels
+TEL;TYPE=CELL:+32486476812
+EMAIL:wannesmachiels@gmail.com
+URL:https://mac-hills.github.io/portfolio/
+END:VCARD`;
+            
+            // Create a Blob with the vCard data
+            const blob = new Blob([vCardData], { type: 'text/vcard' });
+            
+            // Create a URL for the Blob
+            const url = window.URL.createObjectURL(blob);
+            
+            // Create a temporary anchor element to trigger the download
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'wannes_machiels.vcf';
+            
+            // Append the anchor to the document, click it, and remove it
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        });
+    </script>
+</body>
+</html>
